@@ -4,11 +4,11 @@
     <div class="container" style="max-width: 1200px;">
         <!-- Top Information Bar -->
         @if($footer && $footer->top_info_items && count($footer->top_info_items) > 0)
-            <div style="border-bottom: 1px solid #e0e0e0; padding: 30px 0;">
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+            <div class="footer-top-info" style="border-bottom: 1px solid #e0e0e0; padding: 30px 0;">
+                <div class="footer-top-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
                     @foreach($footer->top_info_items as $item)
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="footer-info-item" style="display: flex; align-items: center; gap: 12px;">
+                            <div class="footer-info-icon" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                 @if(isset($item['icon']))
                                     @if($item['icon'] == 'medal')
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                                     @endif
                                 @endif
                             </div>
-                            <span style="font-size: 14px; color: #333; font-weight: 500;">{{ $item['text'] ?? '' }}</span>
+                            <span class="footer-info-text" style="font-size: 14px; color: #333; font-weight: 500;">{{ $item['text'] ?? '' }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -41,11 +41,11 @@
         @endif
         
         <!-- Main Footer Content -->
-        <div style="padding: 60px 0 40px;">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+        <div class="footer-main-content" style="padding: 60px 0 40px;">
+            <div class="footer-links-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
                 <!-- ABOUT CARDEKHO -->
-                <div>
-                    <h4 style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">ABOUT CARDEKHO</h4>
+                <div class="footer-link-section">
+                    <h4 class="footer-section-heading" style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">ABOUT CARDEKHO</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         @if($footer && $footer->about_links && count($footer->about_links) > 0)
                             @foreach($footer->about_links as $link)
@@ -68,8 +68,8 @@
                 </div>
                 
                 <!-- CONNECT WITH US -->
-                <div>
-                    <h4 style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">CONNECT WITH US</h4>
+                <div class="footer-link-section">
+                    <h4 class="footer-section-heading" style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">CONNECT WITH US</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         @if($footer && $footer->connect_links && count($footer->connect_links) > 0)
                             @foreach($footer->connect_links as $link)
@@ -89,8 +89,8 @@
                 </div>
                 
                 <!-- OTHERS -->
-                <div>
-                    <h4 style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">OTHERS</h4>
+                <div class="footer-link-section">
+                    <h4 class="footer-section-heading" style="font-size: 14px; font-weight: 700; color: #333; margin-bottom: 20px; letter-spacing: 0.5px;">OTHERS</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         @if($footer && $footer->others_links && count($footer->others_links) > 0)
                             @foreach($footer->others_links as $link)
@@ -116,17 +116,17 @@
     </div>
     
     <!-- Bottom Copyright and Social Media Bar - Full Width -->
-    <div style="border-top: 1px solid #e0e0e0; padding: 20px 0; width: 100%;">
-        <div class="container" style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="color: #666; font-size: 14px;">
+    <div class="footer-bottom" style="border-top: 1px solid #e0e0e0; padding: 20px 0; width: 100%;">
+        <div class="container footer-bottom-content" style="max-width: 1200px; display: flex; justify-content: space-between; align-items: center;">
+            <div class="footer-copyright" style="color: #666; font-size: 14px;">
                 @if($footer && $footer->copyright_text)
                     {{ $footer->copyright_text }}
                 @else
                     © 2025 Girnar Software Pvt. Ltd.
                 @endif
             </div>
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <span style="color: #666; font-size: 14px; margin-right: 5px;">Connect:</span>
+            <div class="footer-social" style="display: flex; align-items: center; gap: 15px;">
+                <span class="footer-social-label" style="color: #666; font-size: 14px; margin-right: 5px;">Connect:</span>
                 @if($footer && $footer->social_links)
                     @foreach($footer->social_links as $social)
                         <a href="{{ $social['url'] ?? '#' }}" target="_blank" style="color: #666; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">
@@ -160,4 +160,169 @@
         </div>
     </div>
 </footer>
+
+<style>
+    /* Tablet Styles (max-width: 1024px) */
+    @media (max-width: 1024px) {
+        .footer {
+            margin-top: 40px !important;
+        }
+        .footer-top-info {
+            padding: 25px 0 !important;
+        }
+        .footer-top-grid {
+            gap: 20px !important;
+        }
+        .footer-info-icon {
+            width: 35px !important;
+            height: 35px !important;
+        }
+        .footer-info-icon svg {
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .footer-info-text {
+            font-size: 13px !important;
+        }
+        .footer-main-content {
+            padding: 40px 0 30px !important;
+        }
+        .footer-links-grid {
+            gap: 30px !important;
+        }
+        .footer-section-heading {
+            font-size: 13px !important;
+            margin-bottom: 15px !important;
+        }
+        .footer-link-section ul li {
+            margin-bottom: 10px !important;
+        }
+        .footer-link-section ul li a {
+            font-size: 13px !important;
+        }
+        .footer-bottom {
+            padding: 15px 0 !important;
+        }
+        .footer-copyright,
+        .footer-social-label {
+            font-size: 13px !important;
+        }
+    }
+
+    /* Mobile Styles (max-width: 768px) */
+    @media (max-width: 768px) {
+        .footer {
+            margin-top: 30px !important;
+        }
+        .footer-top-info {
+            padding: 20px 0 !important;
+        }
+        .footer-top-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+        }
+        .footer-info-item {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 8px !important;
+        }
+        .footer-info-icon {
+            width: 35px !important;
+            height: 35px !important;
+        }
+        .footer-info-text {
+            font-size: 12px !important;
+        }
+        .footer-main-content {
+            padding: 30px 0 25px !important;
+        }
+        .footer-links-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+        }
+        .footer-section-heading {
+            font-size: 13px !important;
+            margin-bottom: 15px !important;
+        }
+        .footer-link-section ul li {
+            margin-bottom: 10px !important;
+        }
+        .footer-link-section ul li a {
+            font-size: 13px !important;
+        }
+        .footer-bottom-content {
+            flex-direction: column !important;
+            gap: 15px !important;
+            text-align: center !important;
+        }
+        .footer-copyright,
+        .footer-social-label {
+            font-size: 12px !important;
+        }
+        .footer-social {
+            justify-content: center !important;
+        }
+    }
+
+    /* Small Mobile Styles (max-width: 480px) */
+    @media (max-width: 480px) {
+        .footer {
+            margin-top: 20px !important;
+        }
+        .footer-top-info {
+            padding: 15px 0 !important;
+        }
+        .footer-top-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+        }
+        .footer-info-item {
+            gap: 6px !important;
+        }
+        .footer-info-icon {
+            width: 30px !important;
+            height: 30px !important;
+        }
+        .footer-info-icon svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+        .footer-info-text {
+            font-size: 11px !important;
+        }
+        .footer-main-content {
+            padding: 25px 0 20px !important;
+        }
+        .footer-links-grid {
+            gap: 25px !important;
+        }
+        .footer-section-heading {
+            font-size: 12px !important;
+            margin-bottom: 12px !important;
+        }
+        .footer-link-section ul li {
+            margin-bottom: 8px !important;
+        }
+        .footer-link-section ul li a {
+            font-size: 12px !important;
+        }
+        .footer-bottom {
+            padding: 12px 0 !important;
+        }
+        .footer-bottom-content {
+            gap: 12px !important;
+        }
+        .footer-copyright,
+        .footer-social-label {
+            font-size: 11px !important;
+        }
+        .footer-social {
+            gap: 10px !important;
+        }
+        .footer-social svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+    }
+</style>
 

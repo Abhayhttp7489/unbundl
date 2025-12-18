@@ -21,6 +21,19 @@
             margin: 0 auto;
             padding: 0 15px;
         }
+        
+        /* Responsive Container */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+        }
     </style>
 </head>
 <body>

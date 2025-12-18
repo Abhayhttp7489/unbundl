@@ -2,11 +2,11 @@
 
 <section class="most-searched-section" style="padding: 60px 0;">
     <div class="container">
-        <div style="background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h2 style="font-size: 36px; margin-bottom: 30px; color: #333; font-weight: 700;">The most searched cars</h2>
+        <div class="most-searched-container" style="background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h2 class="most-searched-heading" style="font-size: 36px; margin-bottom: 30px; color: #333; font-weight: 700;">The most searched cars</h2>
             
             <!-- Tabs -->
-            <div style="display: flex; gap: 30px; margin-bottom: 30px; border-bottom: 2px solid #e0e0e0;">
+            <div class="car-tabs" style="display: flex; gap: 30px; margin-bottom: 30px; border-bottom: 2px solid #e0e0e0;">
                 <button onclick="showCarType('SUV')" id="tab-SUV" class="car-type-tab" style="background: none; border: none; padding: 10px 0; font-size: 16px; font-weight: 600; color: #333; cursor: pointer; border-bottom: 3px solid #ff6b35; position: relative; bottom: -2px;">SUV</button>
                 <button onclick="showCarType('Hatchback')" id="tab-Hatchback" class="car-type-tab" style="background: none; border: none; padding: 10px 0; font-size: 16px; font-weight: 600; color: #666; cursor: pointer; border-bottom: 3px solid transparent; position: relative; bottom: -2px;">Hatchback</button>
                 <button onclick="showCarType('Sedan')" id="tab-Sedan" class="car-type-tab" style="background: none; border: none; padding: 10px 0; font-size: 16px; font-weight: 600; color: #666; cursor: pointer; border-bottom: 3px solid transparent; position: relative; bottom: -2px;">Sedan</button>
@@ -19,18 +19,18 @@
                         $suvCars = $mostSearchedCars->get('SUV', collect())->take(4);
                     @endphp
                     @forelse($suvCars as $car)
-                        <div style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
-                            <div style="position: relative; height: 240px; overflow: hidden;">
+                        <div class="car-card" style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
+                            <div class="car-image-container" style="position: relative; height: 240px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->name }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
                             </div>
-                            <div style="padding: 20px;">
-                                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
+                            <div class="car-card-content" style="padding: 20px;">
+                                <h3 class="car-name" style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
                                 @if($car->min_price && $car->max_price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
                                 @elseif($car->price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
                                 @endif
-                                <button style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
+                                <button class="car-button" style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
                             </div>
                         </div>
                     @empty
@@ -45,18 +45,18 @@
                         $hatchbackCars = $mostSearchedCars->get('Hatchback', collect())->take(4);
                     @endphp
                     @forelse($hatchbackCars as $car)
-                        <div style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
-                            <div style="position: relative; height: 240px; overflow: hidden;">
+                        <div class="car-card" style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
+                            <div class="car-image-container" style="position: relative; height: 240px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->name }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
                             </div>
-                            <div style="padding: 20px;">
-                                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
+                            <div class="car-card-content" style="padding: 20px;">
+                                <h3 class="car-name" style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
                                 @if($car->min_price && $car->max_price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
                                 @elseif($car->price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
                                 @endif
-                                <button style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
+                                <button class="car-button" style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
                             </div>
                         </div>
                     @empty
@@ -71,18 +71,18 @@
                         $sedanCars = $mostSearchedCars->get('Sedan', collect())->take(4);
                     @endphp
                     @forelse($sedanCars as $car)
-                        <div style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
-                            <div style="position: relative; height: 240px; overflow: hidden;">
+                        <div class="car-card" style="min-width: 320px; max-width: 320px; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #E0E0E0; flex-shrink: 0;">
+                            <div class="car-image-container" style="position: relative; height: 240px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->name }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
                             </div>
-                            <div style="padding: 20px;">
-                                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
+                            <div class="car-card-content" style="padding: 20px;">
+                                <h3 class="car-name" style="font-size: 18px; margin-bottom: 10px; color: #333; font-weight: 600;">{{ $car->name }}</h3>
                                 @if($car->min_price && $car->max_price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->min_price, 2) }} - {{ number_format($car->max_price, 2) }} Lakh*</p>
                                 @elseif($car->price)
-                                    <p style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
+                                    <p class="car-price" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 15px;">₹{{ number_format($car->price / 100000, 2) }} Lakh*</p>
                                 @endif
-                                <button style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
+                                <button class="car-button" style="width: 100%; padding: 10px; border: 2px solid #ff6b35; color: #ff6b35; background: white; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff6b35'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#ff6b35'">View December Offers</button>
                             </div>
                         </div>
                     @empty
@@ -93,7 +93,7 @@
                 </div>
                 
                 <!-- Scroll Arrow -->
-                <button onclick="scrollCars('right')" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                <button onclick="scrollCars('right')" class="scroll-arrow-right" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.5 15L12.5 10L7.5 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -101,7 +101,7 @@
             </div>
             
             <!-- View All Link -->
-            <div style="margin-top: 30px;">
+            <div class="view-all-link" style="margin-top: 30px;">
                 <a href="#" style="display: inline-flex; align-items: center; gap: 8px; color: #ff6b35; text-decoration: none; font-weight: 600; font-size: 16px;">
                     View All SUV Cars
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,6 +112,162 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Tablet Styles (max-width: 1024px) */
+    @media (max-width: 1024px) {
+        .most-searched-section {
+            padding: 40px 0 !important;
+        }
+        .most-searched-container {
+            padding: 30px !important;
+        }
+        .most-searched-heading {
+            font-size: 30px !important;
+            margin-bottom: 25px !important;
+        }
+        .car-tabs {
+            gap: 20px !important;
+            margin-bottom: 25px !important;
+        }
+        .car-type-tab {
+            font-size: 15px !important;
+        }
+        .car-card {
+            min-width: 280px !important;
+            max-width: 280px !important;
+        }
+        .car-image-container {
+            height: 200px !important;
+        }
+        .car-card-content {
+            padding: 15px !important;
+        }
+        .car-name {
+            font-size: 16px !important;
+        }
+        .car-price {
+            font-size: 14px !important;
+        }
+        .car-button {
+            padding: 8px !important;
+            font-size: 14px !important;
+        }
+        .scroll-arrow-right {
+            right: -15px !important;
+            width: 35px !important;
+            height: 35px !important;
+        }
+    }
+
+    /* Mobile Styles (max-width: 768px) */
+    @media (max-width: 768px) {
+        .most-searched-section {
+            padding: 30px 0 !important;
+        }
+        .most-searched-container {
+            padding: 20px !important;
+            border-radius: 8px !important;
+        }
+        .most-searched-heading {
+            font-size: 24px !important;
+            margin-bottom: 20px !important;
+        }
+        .car-tabs {
+            gap: 15px !important;
+            margin-bottom: 20px !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .car-type-tab {
+            font-size: 14px !important;
+            padding: 8px 0 !important;
+            white-space: nowrap;
+        }
+        .car-card {
+            min-width: 260px !important;
+            max-width: 260px !important;
+        }
+        .car-image-container {
+            height: 180px !important;
+        }
+        .car-card-content {
+            padding: 15px !important;
+        }
+        .car-name {
+            font-size: 15px !important;
+            margin-bottom: 8px !important;
+        }
+        .car-price {
+            font-size: 13px !important;
+            margin-bottom: 12px !important;
+        }
+        .car-button {
+            padding: 8px !important;
+            font-size: 13px !important;
+        }
+        .scroll-arrow-right {
+            display: none !important;
+        }
+        .view-all-link {
+            margin-top: 20px !important;
+        }
+        .view-all-link a {
+            font-size: 14px !important;
+        }
+    }
+
+    /* Small Mobile Styles (max-width: 480px) */
+    @media (max-width: 480px) {
+        .most-searched-section {
+            padding: 20px 0 !important;
+        }
+        .most-searched-container {
+            padding: 15px !important;
+            border-radius: 6px !important;
+        }
+        .most-searched-heading {
+            font-size: 20px !important;
+            margin-bottom: 15px !important;
+        }
+        .car-tabs {
+            gap: 10px !important;
+            margin-bottom: 15px !important;
+        }
+        .car-type-tab {
+            font-size: 12px !important;
+            padding: 6px 0 !important;
+        }
+        .car-card {
+            min-width: 240px !important;
+            max-width: 240px !important;
+        }
+        .car-image-container {
+            height: 160px !important;
+        }
+        .car-card-content {
+            padding: 12px !important;
+        }
+        .car-name {
+            font-size: 14px !important;
+            margin-bottom: 6px !important;
+        }
+        .car-price {
+            font-size: 12px !important;
+            margin-bottom: 10px !important;
+        }
+        .car-button {
+            padding: 8px !important;
+            font-size: 12px !important;
+        }
+        .view-all-link {
+            margin-top: 15px !important;
+        }
+        .view-all-link a {
+            font-size: 12px !important;
+        }
+    }
+</style>
 
 <script>
     function showCarType(type) {
